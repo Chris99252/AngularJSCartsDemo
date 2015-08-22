@@ -64,6 +64,7 @@
     <Content Include="css\Site.css" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Site_ok.js" />
     <Content Include="js\Site.js" />
     <Content Include="Web.config" />
   </ItemGroup>
