@@ -17,10 +17,25 @@
                         <input type="text" class="form-control input-xs" placeholder="請輸入商品名稱" ng-model="PName">
                     </div>
                 </div>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label>商品單價：</label>
+                        <input type="number" class="form-control" placeholder="請輸入商品單價" ng-model="Price">
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label>購買數量：</label>
+                        <input type="number" class="form-control" placeholder="請輸入買數量" ng-model="Qty">
+                    </div>
+                </div>
                 <br />
                 <p>
-                    {{PName}}
-                <p/>
+                    您購買了 <code>{{PName}}</code> ，
+                    單價為 <code>{{Price}}</code> 元，
+                    共買了 <code>{{Qty}}</code> 件，
+                    共計 <code>{{Qty*Price}}</code> 元
+                    </>
             </div>
         </div>
     </div>
