@@ -38,6 +38,7 @@
 
 .modal-dialog {
     position: fixed;
+    z-index: 99999;
     top: 30%;
     left: 30%;
     right: 30%;

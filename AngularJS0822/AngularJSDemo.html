@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+    <div class="modal" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-default btn-delete" ng-click="main.deleteCancel(item)">取消</button>
                     <button type="button" class="btn btn-primary btn-delete" ng-click="main.delete(item)">確定</button>
                 </div>
             </div>
@@ -128,17 +128,15 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-backdrop fade in" ng-if="main.showZero"></div>
     <script>
         $(document).ready(function () {
 
 
             $(".btn-delete").click(function (e) {
                 e.preventDefault();
-
                 var $this = $(this);
-                var id = $this.data("id");
-                var trId = $this.data("tr");
-
                 $this.parent().parent().parent().parent().modal("hide");
                 $(".modal-backdrop").remove();
             });
