@@ -36,6 +36,13 @@
     margin-bottom: 1em;
 }
 
+.modal-dialog {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    right: 30%;
+}
+
 @media (min-width: 768px) {
     .bs-example {
         margin-top: 1em;

@@ -67,10 +67,21 @@ function MainCtrl($scope) {
     vm.delete = function (item) {
         var index = vm.carts.indexOf(item);
         vm.carts.splice(index, 1);
+        vm.showZero = false;
     };
 
     vm.changeQty = function (item, num) {
         item.Qty = item.Qty + num;
+        if (item.Qty <= 0) {
+            vm.showZero = true;
+        }
+    };
+
+    vm.showZero = false;
+
+    vm.deleteCancel = function (item) {
+        item.Qty = item.Qty + 1;
+        vm.showZero = false;
     };
 
 
