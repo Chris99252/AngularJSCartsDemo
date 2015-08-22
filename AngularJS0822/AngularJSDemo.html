@@ -58,8 +58,8 @@
                 <div class="bs-example">
                     <div class="form-inline">
                         <div class="form-group">
-                            <input type="text" class="form-control" ng-model="main.keyword.PName" placeholder="請輸入產品名稱搜尋">
-                            <input type="text" class="form-control" ng-model="main.keyword.Price" placeholder="請輸入產品名稱搜尋">
+                            <input type="text" class="form-control" ng-model="main.keyword.PName" placeholder="請輸入商品名稱搜尋">
+                            <input type="text" class="form-control" ng-model="main.keyword.Price" placeholder="請輸入商品價格搜尋">
                             <label><input type="checkbox" ng-model="main.strict">是否需要完全符合</label>
                             <button class="btn btn-warning" ng-click="main.keyword='';">取消</button>
                         </div>
@@ -70,6 +70,11 @@
                 <div class="bs-example">
                     <table class="table">
                         <tr>
+                            <th>
+                                <label ng-if="main.carts">
+                                    <input type="checkbox" ng-model="main.isCheckAll" ng-change="main.checkAll()"> 全選
+                                </label>
+                            </th>
                             <th>#</th>
                             <th>商品名稱</th>
                             <th>商品價格</th>
@@ -78,6 +83,9 @@
                             <th>功能</th>
                         </tr>
                         <tr ng-repeat="item in main.carts|filter:main.keyword:main.strict">
+                            <td>
+                                <input type="checkbox" ng-model="item.isDelete" ng-change="main.checkNoDelete()">
+                            </td>
                             <td>{{$index+1}}</td>
                             <td>{{item.PName}}</td>
                             <td>{{item.Price}}</td>
@@ -98,6 +106,11 @@
                             <td></td>
                             <td>總計</td>
                             <td>NT$ {{main.sum()|number:0}}</td>
+                            <td>
+                                <button class="btn btn-info" ng-click="main.delSelect()" ng-if="main.carts" ng-disabled="main.deleteAllInValid">
+                                    批次刪除
+                                </button>
+                            </td>
                         </tr>
                     </table>
                 </div>

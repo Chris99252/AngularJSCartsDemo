@@ -1,86 +1,122 @@
 function MainCtrl($scope) {
-    // GlobalModel
+	// GlobalModel
 
-    //$scope.PName = "T-shirt";
-    //$scope.Qty = 1;
-    //$scope.Price = 100;
+	//$scope.PName = "T-shirt";
+	//$scope.Qty = 1;
+	//$scope.Price = 100;
 
-    // ViewModel
-    var vm = this;
-    vm.PName = "T-Shrit";
-    vm.Price = 100;
-    vm.Qty = 1;
+	// ViewModel
+	var vm = this;
+	vm.PName = "T-Shrit";
+	vm.Price = 100;
+	vm.Qty = 1;
 
-    // 10 件以上自動打九折的商業邏輯
-    vm.subTotal = function (price, qty) {
-        var total = price * qty;
-        if (vm.Qty >= 10) {
-            total = total * 9;
-        }
-        return total;
-    };
+	// 10 件以上自動打九折的商業邏輯
+	vm.subTotal = function (price, qty) {
+		var total = price * qty;
+		if (vm.Qty >= 10) {
+			total = total * 9;
+		}
+		return total;
+	};
 
-    // 初始 carts 陣列
+	// 初始 carts 陣列
 
-    vm.carts = [];
-    vm.carts.push({
-        PName: 'T-Shirt',
-        Price: 199,
-        Qty: 3
-    });
-    vm.carts.push({
-        PName: 'Shoes',
-        Price: 1800,
-        Qty: 2
-    });
-    vm.carts.push({
-        PName: 'Eye glasses',
-        Price: 1000,
-        Qty: 5
-    });
+	vm.carts = [];
+	vm.carts.push({
+		PName: 'T-Shirt',
+		Price: 199,
+		Qty: 3
+	});
+	vm.carts.push({
+		PName: 'Shoes',
+		Price: 1800,
+		Qty: 2
+	});
+	vm.carts.push({
+		PName: 'Eye glasses',
+		Price: 1000,
+		Qty: 5
+	});
 
-    vm.addToCarts = function () {
-        vm.carts.push({
-            PName: vm.PName,
-            Price: vm.Price,
-            Qty: vm.Qty
-        });
-    };
+	vm.addToCarts = function () {
+		vm.carts.push({
+			PName: vm.PName,
+			Price: vm.Price,
+			Qty: vm.Qty
+		});
+	};
 
-    vm.isDebug = false;
+	vm.isDebug = false;
 
-    vm.deBug = function (result) {
-        vm.isDebug = true;
-        if (!result) {
-            vm.isDebug = false;
-        }
-    };
+	vm.deBug = function (result) {
+		vm.isDebug = true;
+		if (!result) {
+			vm.isDebug = false;
+		}
+	};
 
-    vm.sum = function () {
-        var total = 0;
-        angular.forEach(vm.carts, function (item) {
-            total += vm.subTotal(item.Qty, item.Price);
-        });
-        return total;
-    };
+	vm.sum = function () {
+		var total = 0;
+		angular.forEach(vm.carts, function (item) {
+			total += vm.subTotal(item.Qty, item.Price);
+		});
+		return total;
+	};
 
-    vm.delete = function (item) {
-        var index = vm.carts.indexOf(item);
-        vm.carts.splice(index, 1);
-        vm.showZero = false;
-    };
+	vm.delete = function (item) {
+		var index = vm.carts.indexOf(item);
+		vm.carts.splice(index, 1);
+		vm.showZero = false;
+	};
 
-    vm.changeQty = function (item, num) {
-        item.Qty = item.Qty + num;
-        if (item.Qty <= 0) {
-            vm.showZero = true;
-        }
-    };
+	vm.changeQty = function (item, num) {
+		item.Qty = item.Qty + num;
+		if (item.Qty <= 0) {
+			vm.showZero = true;
+		}
+	};
 
-    vm.showZero = false;
+	vm.showZero = false;
 
-    vm.deleteCancel = function (item) {
-        item.Qty = item.Qty + 1;
-        vm.showZero = false;
-    };
+	vm.deleteCancel = function (item) {
+		item.Qty = item.Qty + 1;
+		vm.showZero = false;
+	};
+
+	vm.delSelect = function(){
+		var newarray = [];
+		angular.forEach(vm.carts, function(item){
+			if (!item.isDelete) {
+				newarray.push(item);
+			}
+		});
+
+		vm.carts = newarray;
+	};
+
+	vm.isCheckAll = false;
+
+	vm.deleteAllInValid = true;
+
+	vm.checkAll = function () {
+	    angular.forEach(vm.carts, function (item) {
+	        vm.deleteAllInValid = true;
+	        if (vm.isCheckAll) {
+	            vm.deleteAllInValid = false;
+	        }
+	        item.isDelete = vm.isCheckAll;
+	    });
+	};
+
+	vm.checkNoDelete = function () {
+	    angular.forEach(vm.carts, function (item) {
+	        vm.isCheckAll = false;
+	        vm.deleteAllInValid = true;
+	        if (item.isDelete) {
+	            vm.isCheckAll = true;
+	            vm.deleteAllInValid = false;
+	        }
+	    });
+	};
 }
