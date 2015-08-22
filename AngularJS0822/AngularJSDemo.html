@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Angular新手入門實作</title>
+    <script src="js/angular.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Site.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="bs-example">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <label>商品名稱：</label>
+                        <input type="text" class="form-control input-xs" placeholder="請輸入商品名稱" ng-model="PName">
+                    </div>
+                </div>
+                <br />
+                <p>
+                    {{PName}}
+                <p/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
