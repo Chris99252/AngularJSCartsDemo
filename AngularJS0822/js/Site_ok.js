@@ -58,21 +58,21 @@ function MainCtrl ($scope, $filter) {
 
 	vm.changeQty = function(model, num){
 
-	    model.Qty = model.Qty + num;
+		model.Qty = model.Qty + num;
 
-	    if (model.Qty > 10) 
-	    {
+		if (model.Qty > 10) 
+		{
 			model.Qty = model.Qty - num;
-	    }
+		}
 
 		if (model.Qty <= 0) {
 			if (confirm('您確定要刪除這筆數量為0的資料嗎？'))
 			{
-            	vm.del(model);
+				vm.del(model);
 			}
 			else
 			{
-            	model.Qty = model.Qty - num;
+				model.Qty = model.Qty - num;
 			}
 		} 
 	};

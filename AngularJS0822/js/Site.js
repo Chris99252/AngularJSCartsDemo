@@ -83,6 +83,4 @@ function MainCtrl($scope) {
         item.Qty = item.Qty + 1;
         vm.showZero = false;
     };
-
-
 }
