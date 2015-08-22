@@ -18,5 +18,35 @@ function MainCtrl($scope) {
             total = total * 9;
         }
         return total;
-    }
+    };
+
+    // 初始 carts 陣列
+
+    vm.carts = [];
+    vm.carts.push({
+        PName: 'T-Shirt',
+        Price: 199,
+        Qty: 3
+    });
+    vm.carts.push({
+        PName: 'Shoes',
+        Price: 1800,
+        Qty: 2
+    });
+    vm.carts.push({
+        PName: 'Eye glasses',
+        Price: 1000,
+        Qty: 5
+    });
+
+    vm.IsDebug = false;
+
+    vm.Debug = function (isDebug) {
+        vm.IsDebug = true;
+        if (!isDebug) {
+            vm.IsDebug = false;
+        }
+    };
+
+
 }
