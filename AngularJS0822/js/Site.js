@@ -64,5 +64,10 @@ function MainCtrl($scope) {
         return total;
     };
 
+    vm.delete = function (item) {
+        var index = vm.carts.indexOf(item);
+        vm.carts.splice(index, 1);
+    };
+
 
 }

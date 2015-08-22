@@ -55,6 +55,7 @@
                             <th>商品價格</th>
                             <th>購買數量</th>
                             <th>小計</th>
+                            <th>功能</th>
                         </tr>
                         <tr ng-repeat="item in main.carts">
                             <td>{{$index+1}}</td>
@@ -62,13 +63,17 @@
                             <td>{{item.Price}}</td>
                             <td>{{item.Qty}}</td>
                             <td>NT$ {{main.subTotal(item.Price,item.Qty)|number:0}}</td>
+                            <td>
+                                <button class="btn btn-danger" ng-click="main.delete(item)">刪除</button>
+                            </td>   
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td>總計</td>
-                            <td>NT$ {{main.sum()|number:0}}</td>
+                            <td>NT$ {{main.sum()|number:0}}</td>             
                         </tr>
                     </table>
                 </div>
