@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Site.css">
 </head>
-<body>
+<body ng-init="PName='T-shirt';Qty=1;Price=299">
     <div class="container-fluid">
         <div class="row">
             <div class="bs-example">
@@ -32,10 +32,10 @@
                 <br />
                 <p>
                     您購買了 <code>{{PName}}</code> ，
-                    單價為 <code>{{Price}}</code> 元，
+                    單價為 <code>NT$ {{Price|number:0}}</code> ，
                     共買了 <code>{{Qty}}</code> 件，
-                    共計 <code>{{Qty*Price}}</code> 元
-                    </>
+                    共計 <code>NT$ {{Qty*Price|number:0}}</code>
+                <p />
             </div>
         </div>
     </div>
