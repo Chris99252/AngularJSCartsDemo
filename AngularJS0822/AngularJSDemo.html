@@ -61,11 +61,21 @@
                             <td>{{$index+1}}</td>
                             <td>{{item.PName}}</td>
                             <td>{{item.Price}}</td>
-                            <td>{{item.Qty}}</td>
+                            <!-- 偷懶寫法 -->
+                            <!-- <td>
+                                <a ng-click="item.Qty = item.Qty - 1">-</a>
+                                {{item.Qty}}
+                                <a ng-click="item.Qty = item.Qty + 1">+</a>
+                            </td> -->
+                            <td>
+                                <a class="btn btn-default btn-xs" ng-click="main.changeQty(item,-1)">-</a>
+                                {{item.Qty}}
+                                <a class="btn btn-default btn-xs" ng-click="main.changeQty(item,1)">+</a>
+                            </td>
                             <td>NT$ {{main.subTotal(item.Price,item.Qty)|number:0}}</td>
                             <td>
                                 <button class="btn btn-danger" ng-click="main.delete(item)">刪除</button>
-                            </td>   
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -73,7 +83,7 @@
                             <td></td>
                             <td></td>
                             <td>總計</td>
-                            <td>NT$ {{main.sum()|number:0}}</td>             
+                            <td>NT$ {{main.sum()|number:0}}</td>
                         </tr>
                     </table>
                 </div>

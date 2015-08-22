@@ -69,5 +69,9 @@ function MainCtrl($scope) {
         vm.carts.splice(index, 1);
     };
 
+    vm.changeQty = function (item, num) {
+        item.Qty = item.Qty + num;
+    };
+
 
 }
