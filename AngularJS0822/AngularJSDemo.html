@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="bs-example">
-                    <button class="btn btn-default pull-right" ng-disabled="main.IsDebug" ng-click="main.Debug(1)">啟用偵錯</button>
+                    <button class="btn btn-default pull-right" ng-disabled="main.isDebug" ng-click="main.Debug(1)">啟用偵錯</button>
                     <div class="form-inline">
                         <div class="form-group">
                             <label>商品名稱：</label>
@@ -37,13 +37,34 @@
                         您購買了 <code>{{main.PName}}</code> ，
                         單價為 <code>NT$ {{main.Price|number:0}}</code> ，
                         共買了 <code>{{main.Qty}}</code> 件，
-                        共計 <code>NT$ {{main.subTotal()|number:0}}</code>
+                        共計 <code>NT$ {{main.SubTotal(main.Price,main.Qty)|number:0}}</code>
                     <p />
-                    <button class="btn btn-primary" ng-click="main.add()">加入購物車</button>
+                    <button class="btn btn-primary" ng-click="main.AddToCarts()">加入購物車</button>
                 </div>
             </div>
-            <div class="col-lg-6" ng-if="main.IsDebug">
+            <div class="col-lg-6" ng-if="main.isDebug">
                 <pre class="Debug" ng-isdebug="main.Debug"><button type="button" class="close" aria-label="Close" ng-click="main.Debug(0)"><span aria-hidden="true">&times;</span></button>{{main.carts|json}}</pre>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="bs-example">
+                    <table class="table">
+                        <tr>
+                            <th>#</th>
+                            <th>商品名稱</th>
+                            <th>商品價格</th>
+                            <th>購買數量</th>
+                            <th>小計</th>
+                        </tr>
+                        <tr ng-repeat="item in main.carts">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.PName}}</td>
+                            <td>{{item.Price}}</td>
+                            <td>{{item.Qty}}</td>
+                            <td>NT$ {{main.SubTotal(item.Price,item.Qty)|number:0}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

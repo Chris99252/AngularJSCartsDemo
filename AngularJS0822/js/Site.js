@@ -8,12 +8,12 @@ function MainCtrl($scope) {
     // ViewModel
     var vm = this;
     vm.PName = "T-Shrit";
-    vm.Qty = 1;
     vm.Price = 100;
+    vm.Qty = 1;
 
     // 10 件以上自動打九折的商業邏輯
-    vm.subTotal = function () {
-        var total = vm.Qty * vm.Price;
+    vm.SubTotal = function (price, qty) {
+        var total = price * qty;
         if (vm.Qty >= 10) {
             total = total * 9;
         }
@@ -39,12 +39,20 @@ function MainCtrl($scope) {
         Qty: 5
     });
 
-    vm.IsDebug = false;
+    vm.AddToCarts = function () {
+        vm.carts.push({
+            PName: vm.PName,
+            Price: vm.Price,
+            Qty: vm.Qty
+        });
+    };
 
-    vm.Debug = function (isDebug) {
-        vm.IsDebug = true;
-        if (!isDebug) {
-            vm.IsDebug = false;
+    vm.isDebug = false;
+
+    vm.Debug = function (result) {
+        vm.isDebug = true;
+        if (!result) {
+            vm.isDebug = false;
         }
     };
 
