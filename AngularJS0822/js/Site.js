@@ -12,7 +12,7 @@ function MainCtrl($scope) {
     vm.Qty = 1;
 
     // 10 件以上自動打九折的商業邏輯
-    vm.SubTotal = function (price, qty) {
+    vm.subTotal = function (price, qty) {
         var total = price * qty;
         if (vm.Qty >= 10) {
             total = total * 9;
@@ -39,7 +39,7 @@ function MainCtrl($scope) {
         Qty: 5
     });
 
-    vm.AddToCarts = function () {
+    vm.addToCarts = function () {
         vm.carts.push({
             PName: vm.PName,
             Price: vm.Price,
@@ -49,11 +49,19 @@ function MainCtrl($scope) {
 
     vm.isDebug = false;
 
-    vm.Debug = function (result) {
+    vm.deBug = function (result) {
         vm.isDebug = true;
         if (!result) {
             vm.isDebug = false;
         }
+    };
+
+    vm.sum = function () {
+        var total = 0;
+        angular.forEach(vm.carts, function (item) {
+            total += vm.subTotal(item.Qty, item.Price);
+        });
+        return total;
     };
 
 
