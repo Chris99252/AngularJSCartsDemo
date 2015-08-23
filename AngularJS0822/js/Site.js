@@ -1,122 +1,138 @@
 function MainCtrl($scope) {
-	// GlobalModel
+    // GlobalModel
 
-	//$scope.PName = "T-shirt";
-	//$scope.Qty = 1;
-	//$scope.Price = 100;
+    //$scope.PName = "T-shirt";
+    //$scope.Qty = 1;
+    //$scope.Price = 100;
 
-	// ViewModel
-	var vm = this;
-	vm.PName = "T-Shrit";
-	vm.Price = 100;
-	vm.Qty = 1;
+    // ViewModel
 
-	// 10 件以上自動打九折的商業邏輯
-	vm.subTotal = function (price, qty) {
-		var total = price * qty;
-		if (vm.Qty >= 10) {
-			total = total * 9;
-		}
-		return total;
-	};
+    var vm = this;
+    vm.PName = "T-Shrit";
+    vm.Price = 100;
+    vm.Qty = 1;
+    vm.isDebug = false;
+    vm.isCheckAll = false;
+    vm.isDeleteSelect = false;
+    vm.cartsOrderBy = 'Price';
+    vm.carts = [];
 
-	// 初始 carts 陣列
+    // 初始 carts 陣列
 
-	vm.carts = [];
-	vm.carts.push({
-		PName: 'T-Shirt',
-		Price: 199,
-		Qty: 3
-	});
-	vm.carts.push({
-		PName: 'Shoes',
-		Price: 1800,
-		Qty: 2
-	});
-	vm.carts.push({
-		PName: 'Eye glasses',
-		Price: 1000,
-		Qty: 5
-	});
+    vm.carts.push({
+        PName: 'T-Shirt',
+        Price: 199,
+        Qty: 3
+    });
+    vm.carts.push({
+        PName: 'Shoes',
+        Price: 1800,
+        Qty: 2
+    });
+    vm.carts.push({
+        PName: 'Eye glasses',
+        Price: 1000,
+        Qty: 5
+    });
 
-	vm.addToCarts = function () {
-		vm.carts.push({
-			PName: vm.PName,
-			Price: vm.Price,
-			Qty: vm.Qty
-		});
-	};
+    // 10 件以上自動打九折的商業邏輯
+    vm.subTotal = function (price, qty) {
+        var total = price * qty;
+        if (vm.Qty >= 10) {
+            total = total * 9;
+        }
+        return total;
+    };
 
-	vm.isDebug = false;
+    vm.addToCarts = function () {
+        vm.carts.push({
+            PName: vm.PName,
+            Price: vm.Price,
+            Qty: vm.Qty
+        });
+    };
 
-	vm.deBug = function (result) {
-		vm.isDebug = true;
-		if (!result) {
-			vm.isDebug = false;
-		}
-	};
+    vm.deBug = function (result) {
+        vm.isDebug = true;
+        if (!result) {
+            vm.isDebug = false;
+        }
+    };
 
-	vm.sum = function () {
-		var total = 0;
-		angular.forEach(vm.carts, function (item) {
-			total += vm.subTotal(item.Qty, item.Price);
-		});
-		return total;
-	};
+    vm.sum = function () {
+        var total = 0;
+        angular.forEach(vm.carts, function (item) {
+            total += vm.subTotal(item.Qty, item.Price);
+        });
+        return total;
+    };
 
-	vm.delete = function (item) {
-		var index = vm.carts.indexOf(item);
-		vm.carts.splice(index, 1);
-		vm.showZero = false;
-	};
+    vm.delete = function (item) {
+        var index = vm.carts.indexOf(item);
+        vm.carts.splice(index, 1);
+        if (!vm.carts.length) {
+            vm.isDeleteSelect = false;
+        }
+    };
 
-	vm.changeQty = function (item, num) {
-		item.Qty = item.Qty + num;
-		if (item.Qty <= 0) {
-			vm.showZero = true;
-		}
-	};
+    vm.changeQty = function (item, num) {
 
-	vm.showZero = false;
+        item.Qty = item.Qty + num;
 
-	vm.deleteCancel = function (item) {
-		item.Qty = item.Qty + 1;
-		vm.showZero = false;
-	};
+        if (item.Qty > 10) {
+            item.Qty = item.Qty - num;
+        }
 
-	vm.delSelect = function(){
-		var newarray = [];
-		angular.forEach(vm.carts, function(item){
-			if (!item.isDelete) {
-				newarray.push(item);
-			}
-		});
+        if (item.Qty <= 0) {
+            if (confirm('您確定要刪除這筆數量為0的資料嗎？')) {
+                vm.delete(item);
+            }
+            else {
+                item.Qty = item.Qty - num;
+            }
+        }
+    };
 
-		vm.carts = newarray;
-	};
+    vm.delSelect = function () {
+        var newarray = [];
+        angular.forEach(vm.carts, function (item) {
+            if (!item.isDelete) {
+                newarray.push(item);
+                vm.isCheckAll = false;
+            }
+        });
 
-	vm.isCheckAll = false;
+        vm.isDeleteSelect = false;
+        
+        vm.carts = newarray;
+    };
 
-	vm.deleteAllInValid = true;
+    vm.checkAll = function () {
+        angular.forEach(vm.carts, function (item) {
+            item.isDelete = vm.isCheckAll;
+        });
+        vm.isDeleteSelect = true;
+        if (!vm.isCheckAll) {
+            vm.isDeleteSelect = false;
+        }
+    };
 
-	vm.checkAll = function () {
-	    angular.forEach(vm.carts, function (item) {
-	        vm.deleteAllInValid = true;
-	        if (vm.isCheckAll) {
-	            vm.deleteAllInValid = false;
-	        }
-	        item.isDelete = vm.isCheckAll;
-	    });
-	};
-
-	vm.checkNoDelete = function () {
-	    angular.forEach(vm.carts, function (item) {
-	        vm.isCheckAll = false;
-	        vm.deleteAllInValid = true;
-	        if (item.isDelete) {
-	            vm.isCheckAll = true;
-	            vm.deleteAllInValid = false;
-	        }
-	    });
-	};
+    vm.checkNoDelete = function () {
+        vm.isDeleteSelect = false;
+        var result = 0;
+        angular.forEach(vm.carts, function (item) {
+            if (item.isDelete) {
+                vm.isDeleteSelect = true;
+            }
+            else {
+                result = result + 1;
+            }
+        });
+        if (result == vm.carts.length) {
+            vm.isCheckAll = false;
+        }
+        if (!result) {
+            vm.isCheckAll = true;
+        }
+    };
 }

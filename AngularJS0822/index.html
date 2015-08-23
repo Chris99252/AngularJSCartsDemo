@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app>
+<html ng-app>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Angular新手入門實作</title>
@@ -71,24 +71,31 @@
                     <table class="table">
                         <tr>
                             <th>
-                                <label ng-if="main.carts">
+                                <label ng-if="main.carts.length">
                                     <input type="checkbox" ng-model="main.isCheckAll" ng-change="main.checkAll()"> 全選
                                 </label>
                             </th>
                             <th>#</th>
                             <th>商品名稱</th>
-                            <th>商品價格</th>
+                            <th>
+                                <a class="btn btn-default btn-xs" ng-click="main.cartsOrderBy='-Price'"><i class="glyphicon glyphicon-sort-by-attributes-alt"></i></a>
+                                商品價格
+                                <a class="btn btn-default btn-xs" ng-click="main.cartsOrderBy='Price'"><i class="glyphicon glyphicon-sort-by-attributes"></i></a>
+                            </th>
                             <th>購買數量</th>
                             <th>小計</th>
                             <th>功能</th>
                         </tr>
-                        <tr ng-repeat="item in main.carts|filter:main.keyword:main.strict">
+                        <tr ng-repeat="item in main.carts|filter:main.keyword:main.strict|orderBy:main.cartsOrderBy"
+                            ng-mouseover="IsHighlight=true"
+                            ng-mouseleave="IsHighlight=false"
+                            ng-class="{'warning': $even, 'active':IsHighlight}">
                             <td>
                                 <input type="checkbox" ng-model="item.isDelete" ng-change="main.checkNoDelete()">
                             </td>
                             <td>{{$index+1}}</td>
                             <td>{{item.PName}}</td>
-                            <td>{{item.Price}}</td>
+                            <td>NT$ {{item.Price|number:0}}</td>
                             <td>
                                 <a class="btn btn-default btn-xs" ng-click="main.changeQty(item,-1)">-</a>
                                 {{item.Qty}}
@@ -96,7 +103,7 @@
                             </td>
                             <td>NT$ {{main.subTotal(item.Price,item.Qty)|number:0}}</td>
                             <td>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">刪除</button>
+                                <button class="btn btn-danger" ng-click="main.delete(item)">刪除</button>
                             </td>
                         </tr>
                         <tr>
@@ -107,7 +114,7 @@
                             <td>總計</td>
                             <td>NT$ {{main.sum()|number:0}}</td>
                             <td>
-                                <button class="btn btn-info" ng-click="main.delSelect()" ng-if="main.carts" ng-disabled="main.deleteAllInValid">
+                                <button class="btn btn-info" ng-click="main.delSelect()" ng-if="main.isDeleteSelect">
                                     批次刪除
                                 </button>
                             </td>
@@ -117,48 +124,6 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="modalDelete" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <h3>是否確定刪除此筆資料?</h3>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-delete" ng-click="main.deleteCancel(item)">取消</button>
-                    <button type="button" class="btn btn-primary btn-delete" ng-click="main.delete(item)">確定</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal-dialog" role="document" ng-if="main.showZero">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="form-group">
-                    <h3>您確定要刪除這筆數量為0的資料嗎？</h3>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="main.deleteCancel(item)">取消</button>
-                <button type="button" class="btn btn-primary btn-delete" ng-click="main.delete(item)">確定</button>
-            </div>
-        </div>
-    </div>
-    <div class="modal-backdrop fade in" ng-if="main.showZero"></div>
-    <script>
-        $(document).ready(function () {
-
-
-            $(".btn-delete").click(function (e) {
-                e.preventDefault();
-                var $this = $(this);
-                $this.parent().parent().parent().parent().modal("hide");
-                $(".modal-backdrop").remove();
-            });
-        });
-    </script>
-
 </body>
 </html>
 
