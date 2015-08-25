@@ -154,6 +154,12 @@
             var pName = $scope.item.PName;
             // 寫入 log
             console.log(pName);
+
+            // 取得值後，改掉他。
+
+            $scope.$apply(function () {
+                $scope.item.PName = "被 Chris 改掉了";
+            });
         }
     </script>
 </body>
