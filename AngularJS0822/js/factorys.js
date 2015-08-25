@@ -1,12 +1,11 @@
-﻿(function () {
+﻿// factory 服務：key & fn() （物件） -> return 值，閉包寫法
+// 餐廳服務：F店員 - 客人 歡迎光臨！！ 客人 小心慢走！！ 客人 上菜囉！！
+
+(function () {
     angular.module('app')
     .factory('tianjin', [function () {
-          var counter = 1;
           return {
               bobSize: "10km",
-              getCount: function(){
-                  return counter++;
-              }
           };
       }])
     .factory('counter', [function () {

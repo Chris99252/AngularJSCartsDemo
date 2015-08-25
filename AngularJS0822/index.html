@@ -19,14 +19,14 @@
     <link rel="stylesheet" href="css/Site.css">
 </head>
 <body ng-controller="MainCtrl as main">
-    <pre><span>rootScope 版本 {{version}} | mainScope 版本 {{main.version}} | 現在時間：{{main.nowTime|date:"yyyy/MM/dd a h:mm"}}</span><span class="pull-right">台灣人口數：{{main.peopleNum}}萬 | 天津爆炸範圍：{{main.tianjin.bobSize}} | 計數器值：{{main.Counter}}</span></pre>
+    <pre><span>rootScope 版本 {{version}} | mainScope 版本 {{main.version}} | 現在時間：{{main.nowTime|date:"yyyy/MM/dd a h:mm"}} | 現在時間：{{main.nowTime2}}</span><span class="pull-right">台灣人口數：{{main.peopleNum}}萬 | 天津爆炸範圍：{{main.tianjin.bobSize}} | 計數器值：{{main.Counter}}</span></pre>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
                 <div class="bs-example">
                     <button class="btn btn-success pull-right" ng-disabled="main.isDebug" ng-click="main.deBug(1)">啟用偵錯</button>
                     <button class="btn btn-default pull-right" onclick="get_version(this)">取得 injector 核心物件</button>
-                    <button class="btn btn-default pull-right" ng-click="main.Counter=main.counter.getCount()">計數器</button>
+                    <button class="btn btn-default pull-right" ng-click="main.addCount()">計數器</button>
                     <form name="form">
                         <div class="form-inline">
                             <div class="form-group">

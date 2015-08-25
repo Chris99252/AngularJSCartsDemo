@@ -1,46 +1,47 @@
-﻿(function () {
+﻿// 替模組註冊服務 MainCtrl controller
+
+(function () {
+    // module : 取得模組
+    // controller : 註冊服務(注入各項服務)
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin','counter', MainCtrl]);
-    function MainCtrl($cookies, version, time, taiwan, tianjin, counter) {
+    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin','counter', 'time2', MainCtrl]);
+    function MainCtrl($cookies, version, time, taiwan, tianjin, counter, time2) {
 
         // ngCookie Test
         $cookies.put('angularJSngCookie', 1);
         
-        // GlobalModel
+        // GlobalModel：不建議這樣寫
 
         //$scope.PName = "T-shirt";
         //$scope.Qty = 1;
         //$scope.Price = 100;
 
-        // ViewModel
+        // ViewModel：官方建議
 
         var vm = this;
+
+        // 計數器預設值
         vm.Counter = 0;
+
+        // 訂購單預設值
         vm.PName = "T-Shrit";
         vm.Price = 100;
         vm.Qty = 1;
+
+        // 偵錯頁面預設關閉
         vm.isDebug = false;
+
+        // 清單全選按鈕預設關閉
         vm.isCheckAll = false;
+
+        // 批次刪除按鈕預設關閉
         vm.isDeleteSelect = false;
+
+        // 購物車清單 orderby 預設依照商品價格 ASC
         vm.cartsOrderBy = 'Price';
-        vm.carts = [];
-
-        // 將 version(value服務) 注入到 MainCtrl  vm.version
-
-        vm.version = version + ".main";
-
-        // 將 time(provider服務) 注入到 MainCtrl  vm.nowTime
-
-        vm.nowTime = time.getTime();
-
-        vm.peopleNum = taiwan.peopleNum;
-
-        vm.tianjin = tianjin;
-
-        vm.counter = counter;
 
         // 初始 carts 陣列
-
+        vm.carts = [];
         vm.carts.push({
             PName: 'T-Shirt',
             Price: 199,
@@ -57,6 +58,26 @@
             Qty: 5
         });
 
+        // 將 version(value服務) 注入到 MainCtrl  vm.version
+        vm.version = version + ".main";
+
+        // 將 time(provider服務) 注入到 MainCtrl  vm.nowTime
+        vm.nowTime = time.getTime();
+
+        // 將 taiwan(service服務) 注入到 MainCtrl  vm.peopleNum
+        vm.peopleNum = taiwan.peopleNum;
+
+        // 將 tianjin(factory服務) 注入到 MainCtrl vm.tianjin
+        vm.tianjin = tianjin;
+
+        // 將 counter(factory服務) 注入到 MainCtrl vm.Counter
+        vm.addCount = function () {
+            vm.Counter = counter.getCount();
+        };
+
+        // 將 time2(provider服務) 注入到 MainCtrl  vm.nowTime2
+        vm.nowTime2 = time2.getTime();
+
         // 10 件以上自動打九折的商業邏輯
         vm.subTotal = function (price, qty) {
             var total = price * qty;
@@ -66,6 +87,7 @@
             return total;
         };
 
+        // 將產品加入至購物車清單（carts 陣列，加入一筆資料）
         vm.addToCarts = function () {
             vm.carts.push({
                 PName: vm.PName,
@@ -74,6 +96,7 @@
             });
         };
 
+        // 開啟/關閉 偵錯頁面
         vm.deBug = function (result) {
             vm.isDebug = true;
             if (!result) {
@@ -81,6 +104,7 @@
             }
         };
 
+        // 計算購物車清單的總計金額
         vm.sum = function () {
             var total = 0;
             angular.forEach(vm.carts, function (item) {
@@ -89,6 +113,7 @@
             return total;
         };
 
+        // 刪除購物車清單的一筆資料
         vm.delete = function (item) {
             var index = vm.carts.indexOf(item);
             vm.carts.splice(index, 1);
@@ -97,6 +122,7 @@
             }
         };
 
+        // 更改購物車清單內的產品數量（- 到 0 刪除 / 最高 + 到 10）
         vm.changeQty = function (item, num) {
 
             item.Qty = item.Qty + num;
@@ -115,6 +141,7 @@
             }
         };
 
+        // 批次刪除功能（isDelete = false 留下）
         vm.delSelect = function () {
             var newarray = [];
             angular.forEach(vm.carts, function (item) {
