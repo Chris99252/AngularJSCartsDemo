@@ -1,7 +1,7 @@
 ﻿(function () {
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', 'version', 'time', MainCtrl]);
-    function MainCtrl($cookies, version, time) {
+    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin', MainCtrl]);
+    function MainCtrl($cookies, version, time, taiwan, tianjin) {
 
         // ngCookie Test
         $cookies.put('angularJSngCookie', 1);
@@ -28,9 +28,13 @@
 
         vm.version = version + ".main";
 
-        //
+        // 將 time(provider服務) 注入到 MainCtrl  vm.nowTime
 
         vm.nowTime = time.getTime();
+
+        vm.peopleNum = taiwan.peopleNum;
+
+        vm.bobSize = tianjin.bobSize;
 
         // 初始 carts 陣列
 
