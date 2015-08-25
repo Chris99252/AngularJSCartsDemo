@@ -1,8 +1,11 @@
 ﻿(function () {
     angular.module('app')
-    .controller('MainCtrl',[MainCtrl]);
-    function MainCtrl() {
+    .controller('MainCtrl', ['$cookies', MainCtrl]);
+    function MainCtrl($cookies) {
 
+        // ngCookie Test
+        $cookies.put('angularJSngCookie', 1);
+        
         // GlobalModel
 
         //$scope.PName = "T-shirt";

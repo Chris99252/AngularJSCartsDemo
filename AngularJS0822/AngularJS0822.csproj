@@ -64,6 +64,7 @@
     <Content Include="css\jquery-ui-1.10.4.css" />
     <Content Include="css\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="js\angular-cookies.min.js" />
     <Content Include="js\angular.1.2.26.min.js" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\bootstrap.min.js" />
