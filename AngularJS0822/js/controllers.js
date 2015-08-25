@@ -1,7 +1,7 @@
 ﻿(function () {
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', 'version', MainCtrl]);
-    function MainCtrl($cookies, version) {
+    .controller('MainCtrl', ['$cookies', 'version', 'time', MainCtrl]);
+    function MainCtrl($cookies, version, time) {
 
         // ngCookie Test
         $cookies.put('angularJSngCookie', 1);
@@ -28,6 +28,9 @@
 
         vm.version = version + ".main";
 
+        //
+
+        vm.nowTime = time.getTime();
 
         // 初始 carts 陣列
 
