@@ -73,6 +73,7 @@
     <Content Include="js\jquery-2.0.3.min.js" />
     <Content Include="js\Site_ok.js" />
     <Content Include="js\Site.js" />
+    <Content Include="js\values.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿(function () {
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', MainCtrl]);
-    function MainCtrl($cookies) {
+    .controller('MainCtrl', ['$cookies', 'version', MainCtrl]);
+    function MainCtrl($cookies, version) {
 
         // ngCookie Test
         $cookies.put('angularJSngCookie', 1);
@@ -23,6 +23,11 @@
         vm.isDeleteSelect = false;
         vm.cartsOrderBy = 'Price';
         vm.carts = [];
+
+        // 將 version(value服務) 注入到 MainCtrl  vm.version
+
+        vm.version = version + ".main";
+
 
         // 初始 carts 陣列
 
