@@ -59,6 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="add-cart.html" />
     <Content Include="index.html" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\jquery-ui-1.10.4.css" />
@@ -69,6 +70,7 @@
     <Content Include="js\angular.min.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\controllers.js" />
+    <Content Include="js\directives.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\jquery-2.0.3.min.js" />
     <Content Include="js\providers.js" />
