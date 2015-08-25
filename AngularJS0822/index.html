@@ -22,6 +22,7 @@
             <div class="col-lg-6">
                 <div class="bs-example">
                     <button class="btn btn-success pull-right" ng-disabled="main.isDebug" ng-click="main.deBug(1)">啟用偵錯</button>
+                    <button class="btn btn-default pull-right" onclick="get_version(this)">取得 injector 核心物件</button>
                     <form name="form">
                         <div class="form-inline">
                             <div class="form-group">
@@ -128,6 +129,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function get_version(btn) {
+            // 建立新的 AngularJS injector 核心物件
+            //var $injector = angular.injector(['ng', 'app']);
+            //var version = $injector.get('version');
+
+            // 取得某範圍內的 $injector 核心物件
+            var $injector = angular.element(btn).injector();
+
+            // 透過 $injector 取得 version 服務物件實體
+            var version = $injector.get('version');
+
+            // 寫入 log
+            console.log(version);
+        }
+    </script>
 </body>
 </html>
 

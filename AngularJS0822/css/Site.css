@@ -43,6 +43,9 @@
     left: 30%;
     right: 30%;
 }
+.btn.pull-right{
+    margin-left: 1em;
+}
 
 @media (min-width: 768px) {
     .bs-example {
