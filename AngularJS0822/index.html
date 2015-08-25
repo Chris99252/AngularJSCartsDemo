@@ -109,6 +109,7 @@
                             <td>NT$ {{main.subTotal(item.Price,item.Qty)|number:0}}</td>
                             <td>
                                 <button class="btn btn-danger" ng-click="main.delete(item)">刪除</button>
+                                <button class="btn btn-default" onclick="get_PName(this)">取得名稱</button>
                             </td>
                         </tr>
                         <tr>
@@ -136,7 +137,7 @@
             //var $injector = angular.injector(['ng', 'app']);
             //var version = $injector.get('version');
 
-            // 取得某範圍內的 $injector 核心物件
+            // 取得某範圍內的 injector 核心物件
             var $injector = angular.element(btn).injector();
 
             // 透過 $injector 取得 version 服務物件實體
@@ -144,6 +145,15 @@
 
             // 寫入 log
             console.log(version);
+        }
+
+        function get_PName(btn) {
+            // 取得某範圍內的 scope 物件
+            var $scope = angular.element(btn).scope();
+            // 透過 $scope 取得 item.PName 的值
+            var pName = $scope.item.PName;
+            // 寫入 log
+            console.log(pName);
         }
     </script>
 </body>
