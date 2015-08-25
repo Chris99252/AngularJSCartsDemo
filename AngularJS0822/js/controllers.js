@@ -15,6 +15,7 @@
         // ViewModel
 
         var vm = this;
+        vm.Counter = 0;
         vm.PName = "T-Shrit";
         vm.Price = 100;
         vm.Qty = 1;
@@ -34,7 +35,7 @@
 
         vm.peopleNum = taiwan.peopleNum;
 
-        vm.bobSize = tianjin.bobSize;
+        vm.tianjin = tianjin;
 
         // 初始 carts 陣列
 
