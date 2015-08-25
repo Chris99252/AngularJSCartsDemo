@@ -1,6 +1,6 @@
 ﻿(function () {
     angular.module('app')
-      .factory('tianjin', [function () {
+    .factory('tianjin', [function () {
           var counter = 1;
           return {
               bobSize: "10km",
@@ -8,5 +8,13 @@
                   return counter++;
               }
           };
-      }]);
+      }])
+    .factory('counter', [function () {
+        var initalCounter = 1;
+        return {
+            getCount: function(){
+                return initalCounter++;
+            }
+        };
+    }]);
 })();

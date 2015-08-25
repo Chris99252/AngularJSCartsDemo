@@ -1,7 +1,7 @@
 ﻿(function () {
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin', MainCtrl]);
-    function MainCtrl($cookies, version, time, taiwan, tianjin) {
+    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin','counter', MainCtrl]);
+    function MainCtrl($cookies, version, time, taiwan, tianjin, counter) {
 
         // ngCookie Test
         $cookies.put('angularJSngCookie', 1);
@@ -36,6 +36,8 @@
         vm.peopleNum = taiwan.peopleNum;
 
         vm.tianjin = tianjin;
+
+        vm.counter = counter;
 
         // 初始 carts 陣列
 
