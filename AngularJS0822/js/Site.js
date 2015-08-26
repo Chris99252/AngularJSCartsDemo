@@ -9,7 +9,7 @@
     .run(['$rootScope', 'version', appRunConfig]);
     
     // configFn : 設定提供者參數
-    function appConfig($controllerProvider, $cookiesProvider, time2Provider) {
+    function appConfig($controllerProvider, $cookiesProvider, time2Provider, cartFilterProvider) {
         // $controllerProvider.allowGlobals();
 
         // 將 cookies 服務 注入到 app.config() 並設定cookie存取的路徑

@@ -58,15 +58,15 @@
                             <th>#</th>
                             <th>商品名稱</th>
                             <th>
-                                <a class="btn btn-default btn-xs" ng-click="main.cartsOrderBy='-Price'"><i class="glyphicon glyphicon-sort-by-attributes-alt"></i></a>
+                                <a class="btn btn-default btn-xs" ng-click="main.changeOrderBy('-Price')"><i class="glyphicon glyphicon-sort-by-attributes-alt"></i></a>
                                 商品價格
-                                <a class="btn btn-default btn-xs" ng-click="main.cartsOrderBy='Price'"><i class="glyphicon glyphicon-sort-by-attributes"></i></a>
+                                <a class="btn btn-default btn-xs" ng-click="main.changeOrderBy('Price')"><i class="glyphicon glyphicon-sort-by-attributes"></i></a>
                             </th>
                             <th>購買數量</th>
                             <th>小計</th>
                             <th>功能</th>
                         </tr>
-                        <tr ng-repeat="item in main.carts|filter:main.keyword:main.strict|orderBy:main.cartsOrderBy"
+                        <tr ng-repeat="item in main.carts|filter:main.keyword:main.strict"
                             ng-mouseover="IsHighlight=true"
                             ng-mouseleave="IsHighlight=false"
                             ng-class="{'warning': $even, 'active':IsHighlight}">
