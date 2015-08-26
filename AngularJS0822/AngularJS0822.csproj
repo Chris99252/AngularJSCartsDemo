@@ -59,7 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="add-cart.html" />
+    <Content Include="module\Directive\add-cart.html" />
     <Content Include="index.html" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\jquery-ui-1.10.4.css" />
@@ -69,17 +69,17 @@
     <Content Include="js\angular.1.2.26.min.js" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\controllers.js" />
-    <Content Include="js\directives.js" />
-    <Content Include="js\filters.js" />
+    <Content Include="module\Controller\controllers.js" />
+    <Content Include="module\Directive\directives.js" />
+    <Content Include="module\Filter\filters.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="js\jquery-2.0.3.min.js" />
-    <Content Include="js\providers.js" />
-    <Content Include="js\services.js" />
+    <Content Include="module\Service\providers.js" />
+    <Content Include="module\Service\services.js" />
     <Content Include="js\Site_ok.js" />
-    <Content Include="js\Site.js" />
-    <Content Include="js\factorys.js" />
-    <Content Include="js\values.js" />
+    <Content Include="module\Site.js" />
+    <Content Include="module\Service\factorys.js" />
+    <Content Include="module\Service\values.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
