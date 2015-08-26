@@ -4,8 +4,8 @@
     // module : 取得模組
     // controller : 註冊服務(注入各項服務)
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', '$filter', 'version', 'time', 'taiwan', 'tianjin', 'counter', 'time2', MainCtrl]);
-    function MainCtrl($cookies, $filter, version, time, taiwan, tianjin, counter, time2) {
+    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin', 'counter', 'time2', 'cartsOrderByFilter', MainCtrl]);
+    function MainCtrl($cookies, version, time, taiwan, tianjin, counter, time2, cartsOrderBy) {
 
         // ngCookie Test
         $cookies.put('angularJSngCookie', 1);
@@ -56,20 +56,11 @@
         });
 
         // 購物車清單 orderby 預設依照商品價格 ASC
-        vm.carts = $filter('orderBy')(vm.carts, 'Price');
-
-        vm.keyword = {
-            PName: '',
-            Price: ''
-        };
-
-        vm.strict = '';
+        vm.carts = cartsOrderBy(vm.carts, 'Price');
 
         vm.changeOrderBy = function (result) {
-            vm.carts = $filter('orderBy')(vm.carts, result);
+            vm.carts = cartsOrderBy(vm.carts, result);
         };
-
-        //var cartsFilterTemp = $filter('filter')(vm.carts, vm.keyword, vm.strict);
 
         // 將 version(value服務) 注入到 MainCtrl  vm.version
         vm.version = version + ".main";
