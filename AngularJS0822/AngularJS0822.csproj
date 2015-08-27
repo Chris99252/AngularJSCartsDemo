@@ -59,6 +59,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bower_components\angular-utils-pagination\dirPagination.js" />
+    <Content Include="bower_components\angular-utils-pagination\dirPagination.tpl.html" />
+    <Content Include="bower_components\angular-utils-pagination\index.js" />
+    <Content Include="bower_components\angular-utils-pagination\package.js" />
+    <Content Include="bower_components\angular\angular-csp.css" />
+    <Content Include="bower_components\angular\angular.js" />
+    <Content Include="bower_components\angular\angular.min.js" />
+    <Content Include="bower_components\angular\index.js" />
     <Content Include="module\Directive\add-cart.html" />
     <Content Include="index.html" />
     <Content Include="css\bootstrap.min.css" />
@@ -76,7 +84,6 @@
     <Content Include="js\jquery-2.0.3.min.js" />
     <Content Include="module\Service\providers.js" />
     <Content Include="module\Service\services.js" />
-    <Content Include="js\Site_ok.js" />
     <Content Include="module\Site.js" />
     <Content Include="module\Service\factorys.js" />
     <Content Include="module\Service\values.js" />
@@ -91,6 +98,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="bower_components\angular-utils-pagination\.bower.json" />
+    <Content Include="bower_components\angular-utils-pagination\bower.json" />
+    <Content Include="bower_components\angular-utils-pagination\package.json" />
+    <Content Include="bower_components\angular-utils-pagination\README.md" />
+    <Content Include="bower_components\angular\.bower.json" />
+    <Content Include="bower_components\angular\angular.min.js.gzip" />
+    <Content Include="bower_components\angular\angular.min.js.map" />
+    <Content Include="bower_components\angular\bower.json" />
+    <Content Include="bower_components\angular\package.json" />
+    <Content Include="bower_components\angular\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

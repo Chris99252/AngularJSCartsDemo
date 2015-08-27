@@ -4,7 +4,7 @@
     // module : 建立模組、載入相依模組
     // config : 模組初始化 (設定提供者參數)
     // run : 模組初始化 (設定服務實體)
-    angular.module('app', ['ngCookies'])
+    angular.module('app', ['ngCookies', 'angularUtils.directives.dirPagination'])
     .config(['$controllerProvider', '$cookiesProvider', 'time2Provider', appConfig])
     .run(['$rootScope', 'version', appRunConfig]);
     

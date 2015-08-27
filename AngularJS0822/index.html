@@ -16,6 +16,7 @@
     <script src="module/Service/factorys.js"></script>
     <script src="module/Directive/directives.js"></script>
     <script src="module/Filter/filters.js"></script>
+    <script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
     <link href="css/jquery-ui-1.10.4.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Site.css">
@@ -66,14 +67,15 @@
                             <th>小計</th>
                             <th>功能</th>
                         </tr>
-                        <tr ng-repeat="item in main.carts|cartsSearch:main.keyword"
-                            ng-mouseover="IsHighlight=true"
+                        <tr dir-paginate="item in main.carts|cartsSearch:main.keyword|itemsPerPage: main.pageSize"
+                            current-page="main.currentPage"
+                            ng-mouseover=" ishighlight=true"
                             ng-mouseleave="IsHighlight=false"
                             ng-class="{'warning': $even, 'active':IsHighlight}">
                             <td>
                                 <input type="checkbox" ng-model="item.isDelete" ng-change="main.checkNoDelete()">
                             </td>
-                            <td>{{$index+1}}</td>
+                            <td>{{main.getIndex(item)}}</td>
                             <td>{{item.PName}}</td>
                             <td>NT$ {{item.Price|number:0}}</td>
                             <td>
@@ -101,6 +103,12 @@
                             </td>
                         </tr>
                     </table>
+
+                    <div ng-controller="PaginatedCtrl as pageinated">
+                        <div>
+                            <dir-pagination-controls boundary-links="true" on-page-change="pageinated.pageChangeHandler(newPageNumber)" template-url="/bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,7 +4,9 @@
     // module : 取得模組
     // controller : 註冊服務(注入各項服務)
     angular.module('app')
-    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin', 'counter', 'time2', 'cartsOrderByFilter', MainCtrl]);
+    .controller('MainCtrl', ['$cookies', 'version', 'time', 'taiwan', 'tianjin', 'counter', 'time2', 'cartsOrderByFilter', MainCtrl])
+    .controller('PaginatedCtrl', [PaginatedCtrl]);
+
     function MainCtrl($cookies, version, time, taiwan, tianjin, counter, time2, cartsOrderBy) {
 
         // ngCookie Test
@@ -36,6 +38,9 @@
 
         // 批次刪除按鈕預設關閉
         vm.isDeleteSelect = false;
+
+        vm.currentPage = 1;
+        vm.pageSize = 10;
 
         // 初始 carts 陣列
         vm.carts = [];
@@ -117,6 +122,10 @@
             return total;
         };
 
+        vm.getIndex = function (item) {
+            return vm.carts.indexOf(item) + 1;
+        };
+
         // 刪除購物車清單的一筆資料
         vm.delete = function (item) {
             var index = vm.carts.indexOf(item);
@@ -187,6 +196,17 @@
             if (!result) {
                 vm.isCheckAll = true;
             }
+        };
+
+        vm.pageChangeHandler = function (num) {
+            console.log('meals page changed to ' + num);
+        };
+    }
+
+    function PaginatedCtrl() {
+        var vm = this;
+        vm.pageChangeHandler = function (num) {
+            console.log('going to page ' + num);
         };
     }
 })();
