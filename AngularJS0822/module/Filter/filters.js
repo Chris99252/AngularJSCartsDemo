@@ -1,4 +1,6 @@
-﻿(function () {
+﻿// filter 過濾器：服務的一種,用來過濾、篩選、轉換資料之用
+
+(function () {
     angular.module('app')
     .filter('cartsOrderBy', function ($filter) {
         return function (model, result) {

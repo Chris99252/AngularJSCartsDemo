@@ -39,6 +39,7 @@
         // 批次刪除按鈕預設關閉
         vm.isDeleteSelect = false;
 
+        // 分頁的預設值，第一頁，一頁10筆
         vm.currentPage = 1;
         vm.pageSize = 10;
 
@@ -63,6 +64,7 @@
         // 購物車清單 orderby 預設依照商品價格 ASC
         vm.carts = cartsOrderBy(vm.carts, 'Price');
 
+        // 將 cartsOrderBy(filter服務) 注入到 MainCtrl ，排序 vm.carts
         vm.changeOrderBy = function (result) {
             vm.carts = cartsOrderBy(vm.carts, result);
         };
@@ -122,6 +124,7 @@
             return total;
         };
 
+        // 取得購物車清單，陣列 index
         vm.getIndex = function (item) {
             return vm.carts.indexOf(item) + 1;
         };
@@ -169,6 +172,7 @@
             vm.carts = newarray;
         };
 
+        // 全選功能
         vm.checkAll = function () {
             angular.forEach(vm.carts, function (item) {
                 item.isDelete = vm.isCheckAll;
@@ -179,6 +183,7 @@
             }
         };
 
+        // 單選功能，並檢查批次刪除按鈕，多選checkbox 狀態
         vm.checkNoDelete = function () {
             vm.isDeleteSelect = false;
             var result = 0;
@@ -198,15 +203,16 @@
             }
         };
 
-        vm.pageChangeHandler = function (num) {
-            console.log('meals page changed to ' + num);
-        };
+        //vm.pageChangeHandler = function (num) {
+        //    console.log('carts page changed to ' + num);
+        //};
     }
 
+    // log 紀錄 換到第幾頁
     function PaginatedCtrl() {
         var vm = this;
-        vm.pageChangeHandler = function (num) {
-            console.log('going to page ' + num);
+        vm.pageChangeHandler = function (newPageNumber) {
+            console.log('going to page ' + newPageNumber);
         };
     }
 })();
